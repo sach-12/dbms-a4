@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template, send_from_directory
+from flask import Flask, request, make_response, render_template, send_from_directory, redirect
 from flask_cors import CORS
 import db
 
@@ -20,7 +20,7 @@ def checkLogin():
         pwd = request.get_json()['_pwd']
         session = db.connectDb(uname=uname, pwd=pwd)
         if session == 'authfail':
-            return 'Authorisation failed, try again', 405
+            return 'Authorisation failed, try again', 403
         else:
             ret = make_response(f'Authorisation success! Logged in as {uname}', 200)
             ret.set_cookie('uname', uname)
@@ -36,7 +36,7 @@ def getTable():
         uname = request.cookies.get('uname')
         pwd = request.cookies.get('pwd')
         if(uname == None or pwd == None):
-            return 'authfail', 405
+            return 'authfail', 403
         table = request.get_json()["_table"]
         session = db.connectDb(uname=uname, pwd=pwd)
         ret = db.getTable(relation=table, session=session)
@@ -45,10 +45,15 @@ def getTable():
         return f'{request.method} not supported for this page', 404
 
 
+@app.route("/", methods = ['GET'])
+def empty():
+    return redirect("/home")
+
+
 @app.route("/home", methods = ['GET'])
 def home():
     if request.method == 'GET':
-        return render_template("index.html")
+        return render_template("home/index.html")
     else:
         return f'{request.method} not supported for this page', 404
 
@@ -59,11 +64,11 @@ def admin():
         uname = request.cookies.get('uname')
         pwd = request.cookies.get('pwd')
         if (uname == None or pwd == None):
-            return 'something went wrong', 404
-            # return render_template("index.html")
+            return 'something went wrong', 403
+            # return render_template("home/index.html")
         elif uname != 'admin':
-            return 'something went wrong', 404
-            # return render_template("index.html")
+            return 'something went wrong', 403
+            # return render_template("home/index.html")
         else:
             return 'good', 200
             # return render_template("admin.html")
@@ -75,11 +80,11 @@ def mod():
         uname = request.cookies.get('uname')
         pwd = request.cookies.get('pwd')
         if (uname == None or pwd == None):
-            return 'something went wrong', 404
-            # return render_template("index.html")
+            return 'something went wrong', 403
+            # return render_template("home/index.html")
         elif uname != 'mod':
-            return 'something went wrong', 404
-            # return render_template("index.html")
+            return 'something went wrong', 403
+            # return render_template("home/index.html")
         else:
             return 'good', 200
             # return render_template("mod.html")
@@ -91,11 +96,11 @@ def staff():
         uname = request.cookies.get('uname')
         pwd = request.cookies.get('pwd')
         if (uname == None or pwd == None):
-            return 'something went wrong', 404
-            # return render_template("index.html")
+            return 'something went wrong', 403
+            # return render_template("home/index.html")
         elif uname != 'staff':
-            return 'something went wrong', 404
-            # return render_template("index.html")
+            return 'something went wrong', 403
+            # return render_template("home/index.html")
         else:
             return 'good', 200
             # return render_template("staff.html")
