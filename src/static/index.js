@@ -7,8 +7,8 @@ function login(){
 		"_pwd": pwd
 	}
 	var url = "http://127.0.0.1:8080/api/checklogin";
-	xhr.open('POST', url, false);
-	xhr.setRequestHeader('Content-type', 'application-json');
+	xhr.open('POST', url, true);
+	xhr.setRequestHeader('Content-Type', 'application-json');
 	xhr.onreadystatechange = function() {
 		if (this.readystate == 4 && this.status == 200){
 			console.log(this.response.text);

@@ -1,13 +1,21 @@
-from flask import Flask, request, make_response, redirect
-from flask.templating import render_template
+from flask import Flask, request, make_response, render_template, send_from_directory
+from flask_cors import CORS
 import db
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+
+@app.route("/<path:path>")
+def static_dir(path):
+    return send_from_directory("static", path)
 
 
 @app.route("/api/checklogin", methods=['POST'])
 def checkLogin():
     if request.method == 'POST':
+        dat = request.get_json(force=True)
         uname = request.get_json()['_uname']
         pwd = request.get_json()['_pwd']
         session = db.connectDb(uname=uname, pwd=pwd)
@@ -40,13 +48,12 @@ def getTable():
 @app.route("/home", methods = ['GET'])
 def home():
     if request.method == 'GET':
-        return 'ok', 200
-        # return render_template("index.html")
+        return render_template("index.html")
     else:
         return f'{request.method} not supported for this page', 404
 
 
-@app.rout("/admin", methods = ['GET'])
+@app.route("/admin", methods = ['GET'])
 def admin():
     if request.method == 'GET':
         uname = request.cookies.get('uname')
