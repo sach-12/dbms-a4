@@ -10,12 +10,13 @@ function login(){
 	xhr.open('POST', url, true);
 	xhr.setRequestHeader('Content-Type', 'application-json');
 	xhr.onreadystatechange = function() {
-		if (this.readystate == 4 && this.status == 200){
+		if (this.readyState == 4 && this.status == 200){
 			console.log(this.response.text);
+			window.location.replace('/admin');
 		}
 		else{
 			console.log("error");
-			console.log(this.readystate, this.status, this.response);
+			console.log(this.readyState, this.status, this.response);
 		}
 	};
 	xhr.send(JSON.stringify(params));

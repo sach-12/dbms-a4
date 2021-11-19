@@ -53,7 +53,10 @@ def empty():
 @app.route("/home", methods = ['GET'])
 def home():
     if request.method == 'GET':
-        return render_template("home/index.html")
+        ret = make_response(render_template("home/index.html"))
+        ret.set_cookie("uname", "", expires=0)
+        ret.set_cookie("pwd", "", expires=0)
+        return ret
     else:
         return f'{request.method} not supported for this page', 404
 
@@ -64,14 +67,14 @@ def admin():
         uname = request.cookies.get('uname')
         pwd = request.cookies.get('pwd')
         if (uname == None or pwd == None):
-            return 'something went wrong', 403
-            # return render_template("home/index.html")
+            # return 'something went wrong', 403
+            return redirect("/home")
         elif uname != 'admin':
-            return 'something went wrong', 403
-            # return render_template("home/index.html")
+            # return 'something went wrong', 403
+            return redirect("/home")
         else:
-            return 'good', 200
-            # return render_template("admin.html")
+            # return 'good', 200
+            return render_template("admin/admin.html")
 
 
 @app.route("/mod", methods = ['GET'])
