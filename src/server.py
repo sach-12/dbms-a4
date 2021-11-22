@@ -23,7 +23,7 @@ def checkLogin():
             return 'Authorisation failed, try again', 403
         else:
             ret = make_response(f'Authorisation success! Logged in as {uname}', 200)
-            ret.set_cookie('uname', uname)
+            ret.set_cookie('uname', uname) #TODO: set max age here later
             ret.set_cookie('pwd', pwd)
             return ret
     else:
@@ -71,7 +71,6 @@ def admin():
         elif uname != 'admin':
             return redirect("/home")
         else:
-            # return 'good', 200
             return render_template("admin/admin.html")
 
 
@@ -94,14 +93,11 @@ def staff():
         uname = request.cookies.get('uname')
         pwd = request.cookies.get('pwd')
         if (uname == None or pwd == None):
-            return 'something went wrong', 403
-            # return render_template("home/index.html")
+            return redirect("/home")
         elif uname != 'staff':
-            return 'something went wrong', 403
-            # return render_template("home/index.html")
+            return redirect("/home")
         else:
-            return 'good', 200
-            # return render_template("staff.html")
+            return render_template("staff/staff.html")
 
 
 if __name__ == '__main__':
