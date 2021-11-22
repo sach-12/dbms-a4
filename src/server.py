@@ -67,10 +67,8 @@ def admin():
         uname = request.cookies.get('uname')
         pwd = request.cookies.get('pwd')
         if (uname == None or pwd == None):
-            # return 'something went wrong', 403
             return redirect("/home")
         elif uname != 'admin':
-            # return 'something went wrong', 403
             return redirect("/home")
         else:
             # return 'good', 200
@@ -83,14 +81,11 @@ def mod():
         uname = request.cookies.get('uname')
         pwd = request.cookies.get('pwd')
         if (uname == None or pwd == None):
-            return 'something went wrong', 403
-            # return render_template("home/index.html")
+            return redirect("/home")
         elif uname != 'mod':
-            return 'something went wrong', 403
-            # return render_template("home/index.html")
+            return redirect("/home")
         else:
-            return 'good', 200
-            # return render_template("mod.html")
+            return render_template("mod/mod.html")
 
 
 @app.route("/staff", methods = ['GET'])

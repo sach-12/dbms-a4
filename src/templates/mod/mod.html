@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <title>AAS Gym</title>
+    <head>
+        <link rel="stylesheet" href="mod/css/mod.css">
+    </head>
+    <body>
+        <script src="mod/js/mod.js"></script>
+        <h1>Welcome Admin</h1>
+        <h2>Which table would you like to access?</h2>
+        <div class="dropdown" style="float:left;">
+            <button class="dropbtn">Select</button>
+            <div class="dropdown-content" style="left:0;">
+                <a href="#member">Member Table</a>
+                <a href="#trainer">Trainer Table</a>
+                <a href="#wplan">Workout Plans</a>
+                <a href="#snp">Sets and Pulls</a>
+                <a href="#dplan">Diet Plans</a>
+                <a href="#nutritionist">Nutritionist</a>
+                <a href="#equipment">Equipment Table</a>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div id="tables">
+            <table id="mtable">
+                <h3 id="member">Member Table</h3>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Date of Joining</th>
+                <th>Plan</th>
+                <th>Address</th>
+                <th>Trainer</th>
+                <th>Nutritionist</th>
+                <th>Gym</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="ttable">
+                <h3 id="trainer">Trainer Table</h3>
+                <th>Trainer ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Salary</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="wtable">
+                <h3 id="wplan">Workout Plans</h3>
+                <th>Trainer ID</th>
+                <th>Member ID</th>
+                <th>Duration</th>
+                <th>Muscle Group</th>
+                <th>Sets and Pulls ID</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="stable">
+                <h3 id="snp">Sets and Pulls</h3>
+                <th>Sets and Pulls ID</th>
+                <th>Sets</th>
+                <th>Reps</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="dtable">
+                <h3 id="dplan">Diet Plans</h3>
+                <th>Member ID</th>
+                <th>Diet Type</th>
+                <th>Calories</th>
+                <th>Nutritionist ID</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="ntable">
+                <h3 id="nutritionist">Nutritionist Table</h3>
+                <th>Nutritionist ID</th>
+                <th>Name</th>
+                <th>Income</th>
+                <th>Visiting Days</th>
+                <th>Gym ID</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="etable">
+                <h3 id="equipment">Equipment Table</h3>
+                <th>Equipment Name</th>
+                <th>Type</th>
+                <th>Weight Denomination</th>
+                <th>Gym ID</th>
+            </table>
+            <br/>
+            <br/>
+        </div>
+    </body>
+</html>
