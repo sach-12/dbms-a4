@@ -22,32 +22,83 @@ def getTable(relation: str, session):
     relation = relation.lower()
     retList = []
     if relation == 'member':
-        obj = Member
+        table = session.query(Member).all()
+        
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
+            
     elif relation == 'trainer':
         obj = Trainer
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     elif relation == 'wplan':
         obj = WPlan
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     elif relation == 'snp':
         obj = SNP
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     elif relation == 'dplan':
         obj = DPlan
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     elif relation == 'nutritionist':
         obj = Nutritionist
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     elif relation == 'adm':
         obj = ADM
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     elif relation == 'payment':
         obj = Payment
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     elif relation == 'equipment':
         obj = Equipment
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     elif relation == 'gym':
         obj = Gym
+        table = session.query(obj).all()
+        for row in table:
+            r = vars(row)
+            r.pop('_sa_instance_state', None)
+            retList.append(r)
     else:
-        return []
-    table = session.query(obj).all()
-    for row in table:
-        r = vars(row)
-        r.pop('_sa_instance_state', None)
-        retList.append(r)
+        pass
+    # table = session.query(obj).all()
+    # for row in table:
+    #     r = vars(row)
+    #     r.pop('_sa_instance_state', None)
+    #     retList.append(r)
     return retList
 
 

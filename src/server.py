@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template, send_from_directory, redirect
+from flask import Flask, request, make_response, render_template, send_from_directory, redirect, jsonify
 from flask_cors import CORS
 import db
 
@@ -37,10 +37,10 @@ def getTable():
         pwd = request.cookies.get('pwd')
         if(uname == None or pwd == None):
             return 'authfail', 403
-        table = request.get_json()["_table"]
+        table = request.get_json(force=True)["_table"]
         session = db.connectDb(uname=uname, pwd=pwd)
         ret = db.getTable(relation=table, session=session)
-        return str(ret), 200
+        return jsonify(ret), 200
     else:
         return f'{request.method} not supported for this page', 404
 

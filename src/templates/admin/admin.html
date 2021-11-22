@@ -7,15 +7,143 @@
     <body>
         <script src="admin/js/admin.js"></script>
         <h1>Welcome Admin</h1>
-        <!-- <p>Which table would you like to access?</p>
+        <h2>Which table would you like to access?</h2>
         <div class="dropdown" style="float:left;">
-            <button class="dropbtn">Left</button>
+            <button class="dropbtn">Select</button>
             <div class="dropdown-content" style="left:0;">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <a href="#member">Member Table</a>
+                <a href="#trainer">Trainer Table</a>
+                <a href="#wplan">Workout Plans</a>
+                <a href="#snp">Sets and Pulls</a>
+                <a href="#dplan">Diet Plans</a>
+                <a href="#nutritionist">Nutritionist</a>
+                <a href="#adm">Admin Table</a>
+                <a href="#payment">Payments</a>
+                <a href="#equipment">Equipment Table</a>
+                <a href="#gym">Gym</a>
             </div>
-        </div> -->
-        
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div id="tables">
+            <table id="mtable">
+                <h3 id="member">Member Table</h3>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Date of Joining</th>
+                <th>Plan</th>
+                <th>Address</th>
+                <th>Trainer</th>
+                <th>Nutritionist</th>
+                <th>Gym</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="ttable">
+                <h3 id="trainer">Trainer Table</h3>
+                <th>Trainer ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Salary</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="wtable">
+                <h3 id="wplan">Workout Plans</h3>
+                <th>Trainer ID</th>
+                <th>Member ID</th>
+                <th>Duration</th>
+                <th>Muscle Group</th>
+                <th>Sets and Pulls ID</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="stable">
+                <h3 id="snp">Sets and Pulls</h3>
+                <th>Sets and Pulls ID</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="dtable">
+                <h3 id="dplan">Diet Plans</h3>
+                <th>Member ID</th>
+                <th>Diet Type</th>
+                <th>Calories</th>
+                <th>Nutritionist ID</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="ntable">
+                <h3 id="nutritionist">Nutritionist Table</h3>
+                <th>Nutritionist ID</th>
+                <th>Name</th>
+                <th>Income</th>
+                <th>Visiting Days</th>
+                <th>Gym ID</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="atable">
+                <h3 id="adm">Admin Table</h3>
+                <th>Admin ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Gym ID</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="ptable">
+                <h3 id="payment">Payment Table</h3>
+                <th>Payment ID</th>
+                <th>Mode of Payment</th>
+                <th>GST Number</th>
+                <th>Member ID</th>
+                <th>Amount</th>
+                <th>Admin ID</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="etable">
+                <h3 id="equipment">Equipment Table</h3>
+                <th>Equipment Name</th>
+                <th>Type</th>
+                <th>Weight Denomination</th>
+                <th>Gym ID</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+            <br/>
+            <br/>
+            <table id="gtable">
+                <h3 id="gym">Gym Table</h3>
+                <th>Gym ID</th>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Location</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </table>
+        </div>
     </body>
 </html>
