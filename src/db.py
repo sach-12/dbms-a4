@@ -139,3 +139,87 @@ def deleteRecord(table: str, id: int, session):
     except Exception as e:
         return str(e)
     return "good"
+
+
+def addRecord(table: str, changes: dict, session):
+    relation = table.lower()
+    if relation == 'm':
+        obj = Member(
+            changes["memberid"],
+            changes["mname"],
+            changes["mphno"],
+            changes["doj"],
+            changes["mplan"],
+            changes["maddress"],
+            changes["tid"],
+            changes["nutrid"],
+            changes["gid"]
+        )
+    elif relation == 't':
+        obj = Trainer(
+            changes["trainerid"],
+            changes["tname"],
+            changes["tphno"],
+            changes["tsalary"]
+        )
+    elif relation == 'w':
+        obj = WPlan(
+            changes["tid"],
+            changes["mid"],
+            changes["duration"],
+            changes["mgroup"],
+            changes["wsap"]
+        )
+    elif relation == 's':
+        obj = SNP(
+            changes["sap"],
+            changes["sts"],
+            changes["reps"]
+        )
+    elif relation == 'd':
+        obj = DPlan(
+            changes["mid"],
+            changes["dtype"],
+            changes["calories"],
+            changes["nutrid"]
+        )
+    elif relation == 'n':
+        obj = Nutritionist(
+            changes["nid"],
+            changes["nname"],
+            changes["nincome"],
+            changes["nvd"],
+            changes["gid"]
+        )
+    elif relation == 'a':
+        obj = ADM(
+            changes["aid"],
+            changes["aname"],
+            changes["aemail"],
+            changes["aphno"],
+            changes["gid"]
+        )
+    elif relation == 'p':
+        obj = Payment(
+            changes["pid"],
+            changes["pmode"],
+            changes["gstno"],
+            changes["mid"],
+            changes["amount"],
+            changes["admid"]
+        )
+    elif relation == 'g':
+        obj = Gym(
+            changes["gymid"],
+            changes["gname"],
+            changes["grating"],
+            changes["gloc"]
+        )
+    else:
+        return "bad"
+    try:
+        session.add(obj)
+        session.commit()
+    except Exception as e:
+        return str(e)
+    return "good"

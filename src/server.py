@@ -99,6 +99,27 @@ def staff():
             return render_template("staff/staff.html")
 
 
+@app.route("/api/add", methods = ['POST'])
+def addRec():
+    if request.method == 'POST':
+        uname = request.cookies.get('uname')
+        pwd = request.cookies.get('pwd')
+        if (uname == None or pwd == None or uname != 'admin'):
+            return redirect("/home")
+        else:
+            dat = request.get_json(force=True)
+            tid = dat.pop("main")[0]
+            # table = str(tid.split("_")[0].strip())
+            # id = int(tid.split("_")[1].strip())
+            session = db.connectDb(uname=uname, pwd=pwd)
+            ret = db.addRecord(tid, dat, session)
+            # ret = db.modifyTable(str(table), int(id), dat, session)
+            if(ret == "good"):
+                return "done", 200
+            else:
+                return ret, 403
+
+
 @app.route("/api/modify", methods = ['POST'])
 def modify():
     if request.method == 'POST':
