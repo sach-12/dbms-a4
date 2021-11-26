@@ -47,6 +47,7 @@ function getForm(rowid) {
             element.setAttribute("placeholder", row.children[i].innerHTML);
         }
         element.name = attr[i].innerHTML;
+        element.id = row.children[i].className;
         element.style.width = "200px";
         foo.appendChild(element);
         
@@ -58,7 +59,7 @@ function getForm(rowid) {
     var subbutton = document.createElement("button");
     subbutton.classList.add("btn");
     subbutton.setAttribute("type", "submit");
-    subbutton.onclick = {};
+    subbutton.setAttribute("onclick", "submitForm('"+rowid+"')");
     subbutton.innerHTML = "Confirm";
 
     var canbutton = document.createElement("button");
@@ -71,4 +72,47 @@ function getForm(rowid) {
     foo.appendChild(canbutton);
 
     openForm();
+}
+
+function submitForm(rowid) {
+    var form = document.getElementById("myForm");
+    var formEle = form.children[0].children
+    var params = {"main": rowid};
+    for (let i = 0; i<formEle.length; i++){
+        if(formEle[i].nodeName == "INPUT"){
+            var key = formEle[i].id;
+            var val = formEle[i].value;
+            if (val != ""){
+                params[key] = val;
+            }
+        }
+        else{
+            continue;
+        }
+    }
+    submitApi(params);
+    closeForm();
+    
+}
+
+function submitApi(params) {
+    console.log(params);
+    var xhr = new XMLHttpRequest();
+    var url = "http://127.0.0.1:8080/api/modify";
+	xhr.open('POST', url, true);
+	xhr.setRequestHeader('Content-Type', 'application-json');
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200){
+            console.log("done");
+            location.reload();
+        }
+        else if (this.status == 403) {
+            alert(this.responseText)
+        }
+        else {
+            console.log("error");
+            console.log(this.status, this.responseText)
+        }
+    }
+    xhr.send(JSON.stringify(params));
 }

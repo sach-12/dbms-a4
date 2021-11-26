@@ -15,9 +15,8 @@ def static_dir(path):
 @app.route("/api/checklogin", methods=['POST'])
 def checkLogin():
     if request.method == 'POST':
-        dat = request.get_json(force=True)
-        uname = request.get_json()['_uname']
-        pwd = request.get_json()['_pwd']
+        uname = request.get_json(force=True)['_uname']
+        pwd = request.get_json(force=True)['_pwd']
         session = db.connectDb(uname=uname, pwd=pwd)
         if session == 'authfail':
             return 'Authorisation failed, try again', 403
@@ -98,6 +97,27 @@ def staff():
             return redirect("/home")
         else:
             return render_template("staff/staff.html")
+
+
+@app.route("/api/modify", methods = ['POST'])
+def modify():
+    if request.method == 'POST':
+        uname = request.cookies.get('uname')
+        pwd = request.cookies.get('pwd')
+        if (uname == None or pwd == None or uname == 'mod'):
+            return redirect("/home")
+        else:
+            dat = request.get_json(force=True)
+            tid = dat.pop("main")
+            table = str(tid.split("_")[0].strip())
+            id = int(tid.split("_")[1].strip())
+            session = db.connectDb(uname=uname, pwd=pwd)
+            ret = db.modifyTable(str(table), int(id), dat, session)
+            if(ret == "good"):
+                retVal = make_response(redirect(f"/{uname}"))
+                return retVal, 200
+            else:
+                return ret, 403
 
 
 if __name__ == '__main__':

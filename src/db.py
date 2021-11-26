@@ -22,83 +22,81 @@ def getTable(relation: str, session):
     relation = relation.lower()
     retList = []
     if relation == 'member':
-        table = session.query(Member).all()
-        
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
-            
+        obj = Member
+        key = "memberid"
     elif relation == 'trainer':
         obj = Trainer
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "trainerid"
     elif relation == 'wplan':
         obj = WPlan
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "mid"
     elif relation == 'snp':
         obj = SNP
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "sap"
     elif relation == 'dplan':
         obj = DPlan
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "mid"
     elif relation == 'nutritionist':
         obj = Nutritionist
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "nid"
     elif relation == 'adm':
         obj = ADM
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "aid"
     elif relation == 'payment':
         obj = Payment
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "pid"
     elif relation == 'equipment':
         obj = Equipment
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "ename"
     elif relation == 'gym':
         obj = Gym
-        table = session.query(obj).all()
-        for row in table:
-            r = vars(row)
-            r.pop('_sa_instance_state', None)
-            retList.append(r)
+        key = "gymid"
     else:
-        pass
-    # table = session.query(obj).all()
-    # for row in table:
-    #     r = vars(row)
-    #     r.pop('_sa_instance_state', None)
-    #     retList.append(r)
+        return []
+    table = session.query(obj).all()
+    for row in table:
+        r = vars(row)
+        r.pop('_sa_instance_state', None)
+        retList.append(r)
+    retList = sorted(retList, key=lambda x: x[key])
     return retList
 
 
+def modifyTable(table: str, id: int, changes: dict, session):
+    relation = table.lower()
+    if relation == 'member':
+        obj = Member
+        res = session.query(obj).filter(obj.memberid == id)
+    elif relation == 'trainer':
+        obj = Trainer
+        res = session.query(obj).filter(obj.trainerid == id)
+    elif relation == 'wplan':
+        obj = WPlan
+        res = session.query(obj).filter(obj.mid == id)
+    elif relation == 'snp':
+        obj = SNP
+        res = session.query(obj).filter(obj.sap == id)
+    elif relation == 'dplan':
+        obj = DPlan
+        res = session.query(obj).filter(obj.mid == id)
+    elif relation == 'nutritionist':
+        obj = Nutritionist
+        res = session.query(obj).filter(obj.nid == id)
+    elif relation == 'adm':
+        obj = ADM
+        res = session.query(obj).filter(obj.aid == id)
+    elif relation == 'payment':
+        obj = Payment
+        res = session.query(obj).filter(obj.pid == id)
+    elif relation == 'gym':
+        obj = Gym
+        res = session.query(obj).filter(obj.gymid == id)
+    else:
+        return "bad"
+    try:
+        for key in changes:
+            res.update({getattr(obj, key): changes[key]}, synchronize_session = False)
+        session.commit()
+    except Exception as e:
+        return e
+    return "good"
