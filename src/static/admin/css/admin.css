@@ -124,3 +124,17 @@
   .edit:hover{
     opacity: 1;
   }
+
+  .delete {
+    background-color: red;
+    color: white;
+    padding: 3px 3px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.8;
+  }
+
+  .delete:hover{
+    opacity: 1;
+  }

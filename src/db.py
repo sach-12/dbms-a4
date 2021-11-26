@@ -100,3 +100,42 @@ def modifyTable(table: str, id: int, changes: dict, session):
     except Exception as e:
         return e
     return "good"
+
+
+def deleteRecord(table: str, id: int, session):
+    relation = table.lower()
+    if relation == 'member':
+        obj = Member
+        res = session.query(obj).filter(obj.memberid == id)
+    elif relation == 'trainer':
+        obj = Trainer
+        res = session.query(obj).filter(obj.trainerid == id)
+    elif relation == 'wplan':
+        obj = WPlan
+        res = session.query(obj).filter(obj.mid == id)
+    elif relation == 'snp':
+        obj = SNP
+        res = session.query(obj).filter(obj.sap == id)
+    elif relation == 'dplan':
+        obj = DPlan
+        res = session.query(obj).filter(obj.mid == id)
+    elif relation == 'nutritionist':
+        obj = Nutritionist
+        res = session.query(obj).filter(obj.nid == id)
+    elif relation == 'adm':
+        obj = ADM
+        res = session.query(obj).filter(obj.aid == id)
+    elif relation == 'payment':
+        obj = Payment
+        res = session.query(obj).filter(obj.pid == id)
+    elif relation == 'gym':
+        obj = Gym
+        res = session.query(obj).filter(obj.gymid == id)
+    else:
+        return "bad"
+    try:
+        session.delete(res[0])
+        session.commit()
+    except Exception as e:
+        return str(e)
+    return "good"

@@ -53,6 +53,7 @@ function mtable(response) {
         var cell8 = row.insertCell();
         var cell9 = row.insertCell();
         var cell10 = row.insertCell();
+        var cell11 = row.insertCell();
         cell1.innerHTML = value["memberid"];
         cell1.className = "memberid";
         cell2.innerHTML = value["mname"];
@@ -72,6 +73,7 @@ function mtable(response) {
         cell9.innerHTML = value["gid"];
         cell9.className = "gid";
         cell10.innerHTML = "<button class='edit' onclick=getForm('member_"+value["memberid"]+"')>Edit</button>";
+        cell11.innerHTML = "<button class='delete' onclick=deleteRow('member_"+value["memberid"]+"')>Delete</button>";
     }
 }
 
@@ -85,6 +87,7 @@ function ttable(response) {
         var cell3 = row.insertCell();
         var cell4 = row.insertCell();
         var cell5 = row.insertCell();
+        var cell6 = row.insertCell();
         cell1.innerHTML = value["trainerid"];
         cell1.className = "trainerid";
         cell2.innerHTML = value["tname"];
@@ -94,6 +97,7 @@ function ttable(response) {
         cell4.innerHTML = value["tsalary"];
         cell4.className = "tsalary";
         cell5.innerHTML = "<button class='edit' onclick=getForm('trainer_"+value["trainerid"]+"')>Edit</button>";
+        cell6.innerHTML = "<button class='delete' onclick=deleteRow('trainer_"+value["trainerid"]+"')>Delete</button>";
     }
 }
 
@@ -108,6 +112,7 @@ function wtable(response) {
         var cell4 = row.insertCell();
         var cell5 = row.insertCell();
         var cell6 = row.insertCell();
+        var cell7 = row.insertCell();
         cell1.innerHTML = value["tid"];
         cell1.className = "tid";
         cell2.innerHTML = value["mid"];
@@ -119,6 +124,7 @@ function wtable(response) {
         cell5.innerHTML = value["wsap"];
         cell5.className = "wsap";
         cell6.innerHTML = "<button class='edit' onclick=getForm('wplan_"+value["mid"]+"')>Edit</button>";
+        cell7.innerHTML = "<button class='delete' onclick=deleteRow('wplan_"+value["mid"]+"')>Delete</button>";
     }
 }
 
@@ -131,6 +137,7 @@ function stable(response) {
         var cell2 = row.insertCell();
         var cell3 = row.insertCell();
         var cell4 = row.insertCell();
+        var cell5 = row.insertCell();
         cell1.innerHTML = value["sap"];
         cell1.className = "sap";
         cell2.innerHTML = value["sts"];
@@ -138,6 +145,7 @@ function stable(response) {
         cell3.innerHTML = value["reps"];
         cell3.className = "reps";
         cell4.innerHTML = "<button class='edit' onclick=getForm('sap_"+value["sap"]+"')>Edit</button>";
+        cell5.innerHTML = "<button class='delete' onclick=deleteRow('sap_"+value["sap"]+"')>Delete</button>";
     }
 }
 
@@ -151,6 +159,7 @@ function dtable(response) {
         var cell3 = row.insertCell();
         var cell4 = row.insertCell();
         var cell5 = row.insertCell();
+        var cell6 = row.insertCell();
         cell1.innerHTML = value["mid"];
         cell1.className = "mid";
         cell2.innerHTML = value["dtype"];
@@ -160,6 +169,7 @@ function dtable(response) {
         cell4.innerHTML = value["nutrid"];
         cell4.className = "nutrid";
         cell5.innerHTML = "<button class='edit' onclick=getForm('dplan_"+value["mid"]+"')>Edit</button>";
+        cell6.innerHTML = "<button class='delete' onclick=deleteRow('dplan_"+value["mid"]+"')>Delete</button>";
     }
 }
 
@@ -174,6 +184,7 @@ function ntable(response) {
         var cell4 = row.insertCell();
         var cell5 = row.insertCell();
         var cell6 = row.insertCell();
+        var cell7 = row.insertCell();
         cell1.innerHTML = value["nid"];
         cell1.className = "nid";
         cell2.innerHTML = value["nname"];
@@ -185,6 +196,7 @@ function ntable(response) {
         cell5.innerHTML = value["gid"];
         cell5.className = "gid";
         cell6.innerHTML = "<button class='edit' onclick=getForm('nutritionist_"+value["nid"]+"')>Edit</button>";
+        cell7.innerHTML = "<button class='delete' onclick=deleteRow('nutritionist_"+value["nid"]+"')>Delete</button>";
     }
 }
 
@@ -199,6 +211,7 @@ function atable(response) {
         var cell4 = row.insertCell();
         var cell5 = row.insertCell();
         var cell6 = row.insertCell();
+        var cell7 = row.insertCell();
         cell1.innerHTML = value["aid"];
         cell1.className = "aid";
         cell2.innerHTML = value["aname"];
@@ -210,6 +223,7 @@ function atable(response) {
         cell5.innerHTML = value["gid"];
         cell5.className = "gid";
         cell6.innerHTML = "<button class='edit' onclick=getForm('adm_"+value["aid"]+"')>Edit</button>";
+        cell7.innerHTML = "<button class='delete' onclick=deleteRow('adm_"+value["aid"]+"')>Delete</button>";
     }
 }
 
@@ -225,6 +239,7 @@ function ptable(response) {
         var cell5 = row.insertCell();
         var cell6 = row.insertCell();
         var cell7 = row.insertCell();
+        var cell8 = row.insertCell();
         cell1.innerHTML = value["pid"];
         cell1.className = "pid";
         cell2.innerHTML = value["pmode"];
@@ -238,6 +253,7 @@ function ptable(response) {
         cell6.innerHTML = value["admid"];
         cell6.className = "admid";
         cell7.innerHTML = "<button class='edit' onclick=getForm('payment_"+value["pid"]+"')>Edit</button>";
+        cell8.innerHTML = "<button class='delete' onclick=deleteRow('payment_"+value["pid"]+"')>Delete</button>";
     }
 }
 
@@ -266,6 +282,7 @@ function gtable(response) {
         var cell3 = row.insertCell();
         var cell4 = row.insertCell();
         var cell5 = row.insertCell();
+        var cell6 = row.insertCell();
         cell1.innerHTML = value["gymid"];
         cell1.className = "gymid";
         cell2.innerHTML = value["gname"];
@@ -275,5 +292,6 @@ function gtable(response) {
         cell4.innerHTML = value["gloc"];
         cell4.className = "gloc";
         cell5.innerHTML = "<button class='edit' onclick=getForm('gym_"+value["gymid"]+"')>Edit</button>";
+        cell6.innerHTML = "<button class='delete' onclick=deleteRow('gym_"+value["gymid"]+"')>Delete</button>";
     }
 }

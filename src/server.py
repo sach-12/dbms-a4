@@ -114,8 +114,27 @@ def modify():
             session = db.connectDb(uname=uname, pwd=pwd)
             ret = db.modifyTable(str(table), int(id), dat, session)
             if(ret == "good"):
-                retVal = make_response(redirect(f"/{uname}"))
-                return retVal, 200
+                return "done", 200
+            else:
+                return ret, 403
+
+
+@app.route("/api/delete", methods = ['POST'])
+def delete():
+    if request.method == 'POST':
+        uname = request.cookies.get('uname')
+        pwd = request.cookies.get('pwd')
+        if (uname == None or pwd == None or uname != 'admin'):
+            return redirect("/home")
+        else:
+            dat = request.get_json(force=True)
+            tid = dat.pop("main")
+            session = db.connectDb(uname=uname, pwd=pwd)
+            table = str(tid.split("_")[0].strip())
+            id = int(tid.split("_")[1].strip())
+            ret = db.deleteRecord(table, id, session)
+            if(ret == "good"):
+                return "done", 200
             else:
                 return ret, 403
 

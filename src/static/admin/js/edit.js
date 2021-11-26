@@ -90,8 +90,15 @@ function submitForm(rowid) {
             continue;
         }
     }
-    submitApi(params);
-    closeForm();
+    if (Object.keys(params).length > 1){
+        submitApi(params);
+        closeForm();
+    }
+    else {
+        alert("Enter at least one value to be edited");
+        closeForm();
+        getForm(rowid);
+    }
     
 }
 
@@ -115,4 +122,29 @@ function submitApi(params) {
         }
     }
     xhr.send(JSON.stringify(params));
+}
+
+function deleteRow(rowid) {
+    boo = confirm("Are you sure about deleting this record?");
+    if (boo == true) {
+        var xhr = new XMLHttpRequest();
+        var params = {"main": rowid}
+        var url = "http://127.0.0.1:8080/api/delete";
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application-json');
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200){
+                console.log("done");
+                location.reload();
+            }
+            else if (this.status == 403) {
+                alert(this.responseText)
+            }
+            else {
+                console.log("error");
+                console.log(this.status, this.responseText)
+            }
+        }
+        xhr.send(JSON.stringify(params));
+    }
 }
