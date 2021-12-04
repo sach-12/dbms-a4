@@ -6,6 +6,7 @@
     </head>
     <body>
         <script src="staff/js/staff.js"></script>
+        <script src="staff/js/edit.js"></script>
         <h1>Welcome Staff</h1>
         <h2>Which table would you like to access?</h2>
         <div class="dropdown" style="float:left;">
@@ -19,40 +20,49 @@
         <br/>
         <br/>
         <br/>
+        <div class="form-popup" id="myForm">
+            <form class="form-container" action="null"></form>
+        </div> 
         <div id="tables">
             <table id="mtable">
                 <h3 id="member">Member Table</h3>
-                <th>Member ID</th>
-                <th>Name</th>
-                <th>Phone Number</th>
-                <th>Date of Joining</th>
-                <th>Plan</th>
-                <th>Address</th>
-                <th>Trainer</th>
-                <th>Nutritionist</th>
-                <th>Gym</th>
-                <th>Edit</th>
+                <tr id="mhead">
+                    <th>Member ID</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Date of Joining</th>
+                    <th>Plan</th>
+                    <th>Address</th>
+                    <th>Trainer</th>
+                    <th>Nutritionist</th>
+                    <th>Gym</th>
+                    <th>Edit</th>
+                </tr>
             </table>
             <br/>
             <br/>
             <table id="ttable">
                 <h3 id="trainer">Trainer Table</h3>
-                <th>Trainer ID</th>
-                <th>Name</th>
-                <th>Phone Number</th>
-                <th>Salary</th>
-                <th>Edit</th>
+                <tr id="thead">
+                    <th>Trainer ID</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Salary</th>
+                    <th>Edit</th>
+                </tr>
             </table>
             <br/>
             <br/>
             <table id="ntable">
                 <h3 id="nutritionist">Nutritionist Table</h3>
-                <th>Nutritionist ID</th>
-                <th>Name</th>
-                <th>Income</th>
-                <th>Visiting Days</th>
-                <th>Gym ID</th>
-                <th>Edit</th>
+                <tr id="nhead">
+                    <th>Nutritionist ID</th>
+                    <th>Name</th>
+                    <th>Income</th>
+                    <th>Visiting Days</th>
+                    <th>Gym ID</th>
+                    <th>Edit</th>
+                </tr>
             </table>
             <br/>
             <br/>
