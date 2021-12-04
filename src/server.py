@@ -22,7 +22,7 @@ def checkLogin():
             return 'Authorisation failed, try again', 403
         else:
             ret = make_response(f'Authorisation success! Logged in as {uname}', 200)
-            ret.set_cookie('uname', uname) #TODO: set max age here later
+            ret.set_cookie('uname', uname)
             ret.set_cookie('pwd', pwd)
             return ret
     else:
@@ -109,11 +109,8 @@ def addRec():
         else:
             dat = request.get_json(force=True)
             tid = dat.pop("main")[0]
-            # table = str(tid.split("_")[0].strip())
-            # id = int(tid.split("_")[1].strip())
             session = db.connectDb(uname=uname, pwd=pwd)
             ret = db.addRecord(tid, dat, session)
-            # ret = db.modifyTable(str(table), int(id), dat, session)
             if(ret == "good"):
                 return "done", 200
             else:

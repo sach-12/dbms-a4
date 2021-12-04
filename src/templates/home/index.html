@@ -4,15 +4,19 @@
 	<head>
 		<link rel='stylesheet' href='home/css/index.css'>
 	</head>
-	<body> 
+	<body>
 		<script src="home/js/index.js"></script>
 		<h1 id="head1"> AAS GYM </h1>
-		<div id='login'>
-			<label for="uname">Username:</label><br>
-			<input type="text" id="uname" name="uname"><br>
-			<label for="pwd">Password:</label><br>
-			<input type="password" id="pwd" name="pwd"><br>
-			<input type="submit" value="Log In" onclick=login()>
+		<div id="form">
+			<h3>Login Here</h3>
+	
+			<label for="username">Username</label>
+			<input type="text" placeholder="Email or Phone" id="username">
+	
+			<label for="password">Password</label>
+			<input type="password" placeholder="Password" id="password">
+	
+			<input id="submit" type="submit" value="Log In" onclick=login()>
 		</div>
 	</body>
 </html>

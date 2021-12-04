@@ -1,6 +1,6 @@
 function login(){
-	let uname = document.getElementById('uname').value;
-	let pwd = document.getElementById('pwd').value;
+	let uname = document.getElementById('username').value;
+	let pwd = document.getElementById('password').value;
 	var xhr = new XMLHttpRequest();
 	params = {
 		"_uname": uname,
@@ -13,6 +13,13 @@ function login(){
 		if (this.readyState == 4 && this.status == 200){
 			console.log(this.response.text);
 			window.location.replace('/' + uname);
+		}
+		else if (this.readyState == 4 && this.status == 403){
+			let fm = document.getElementById("form");
+			var failed = document.createElement("p");
+			failed.style.color = "#ff2424";
+			failed.innerHTML = "Invalid username/password! Try again";
+			fm.append(failed);
 		}
 		else{
 			console.log("error");
