@@ -11,7 +11,7 @@ Following are the requirements before proceeding:
 Before proceeding, there's a few changes you need to do in pg_hba.conf file. To access the file, run the following command:
 `sudo nano /etc/postgresql/14/main/pg_hba.conf`
 After that, scroll down till you see this:
-![alt text](image/img1.png)
+![alt text](https://github.com/sach-12/dbms-a4/blob/main/build/image/img1.png)
 
 Change the IPv4 local connection access from `scram-sha-256` to `trust`. This will enable using postgres from the main linux user.
 
@@ -19,13 +19,13 @@ After committing this change, restart postgresql bu running `sudo service postgr
 
 # Database setup
 
-After you have made this change, run [dump.sh](dump.sh) file only once. This will create the database, insert values, create roles and install the required python-pip dependencies. This file must be run only once.
+After you have made this change, run [dump.sh](https://github.com/sach-12/dbms-a4/blob/main/build/dump.sh) file only once. This will create the database, insert values, create roles and install the required python-pip dependencies. This file must be run only once.
 
 # Running the server
 
-Once this is finished, run [start.sh](start.sh). This will bring the flask app up.
+Once this is finished, run [start.sh](https://github.com/sach-12/dbms-a4/blob/main/build/start.sh). This will bring the flask app up.
 
-Open (http://127.0.0.1:8080) to access the home page.
+Open http://127.0.0.1:8080 to access the home page.
 
 # IMPORTANT
 
@@ -33,7 +33,7 @@ Do note that after building the database, your default password to access psql w
 
 Reopen the pg_hba.conf file by running: `sudo nano /etc/postgresql/14/main/pg_hba.conf`.
 Scroll down till you see this:
-![alt text](image/img2.png)
+![alt text](https://github.com/sach-12/dbms-a4/blob/main/build/image/img2.png)
 
 Change the "Database administrative login access" from `peer` to `md5`. Similarly, under "local" as well, change from `peer` to `md5`.
 
